@@ -5,6 +5,7 @@ public class Simulation {
     Integer numberOfSides;
     Integer numberOfDice;
     Integer numberOfRolls;
+    Integer noOfPossibleOutcomes;
     Bins results;
 
     //For standard 6-sided dice.
@@ -12,7 +13,7 @@ public class Simulation {
         this.numberOfSides = 6;
         this.numberOfDice = numberOfDice;
         this.numberOfRolls = numberOfRolls;
-        Integer noOfPossibleOutcomes = (numberOfDice * numberOfSides) - (numberOfDice - 1);
+        this.noOfPossibleOutcomes = (numberOfDice * numberOfSides) - (numberOfDice - 1);
         results = new Bins(numberOfDice, noOfPossibleOutcomes);
     }
 
@@ -22,7 +23,7 @@ public class Simulation {
         this.numberOfSides = numberOfSides;
         this.numberOfDice = numberOfDice;
         this.numberOfRolls  = numberOfRolls;
-        Integer noOfPossibleOutcomes = (numberOfDice * numberOfSides) - (numberOfDice - 1);
+        this.noOfPossibleOutcomes = (numberOfDice * numberOfSides) - (numberOfDice - 1);
         results = new Bins(numberOfDice, noOfPossibleOutcomes);
     }
 
@@ -35,8 +36,17 @@ public class Simulation {
         }
     }
 
-    public void printResults() { //hmmmm this doesn't look quite right.
-        results.toString();  //let's use get bin here.
+    public void printResults() { //holy formatting, Batman!
+        System.out.println("***");
+        System.out.printf("Simulation of %d dice tossed for %d.\n", numberOfDice, numberOfRolls);
+        System.out.println("***");
+        Double[] percentResults = new Double[results.results.length];
+        for (int i = 0; i <= noOfPossibleOutcomes; i++) {
+            double percentTimesRolled = results.results[i] / numberOfRolls;
+            percentTimesRolled = Math.round(percentTimesRolled * 100)/100;
+            percentResults[i] = percentTimesRolled;
+        }
+
     }
 
 
