@@ -12,11 +12,11 @@ public class DiceTest {
         Dice dice = new Dice(1);
         // Then
         boolean actual;
-        Integer actualRoll = dice.tossAndSum(1);
+        Integer actualRoll = dice.tossAndSum();
         if (minRoll <= actualRoll && actualRoll <= maxRoll) {
             actual = true;
         } else { actual = false;}
+        System.out.println(actualRoll);
         Assertions.assertTrue(actual);
-
     }
 }
