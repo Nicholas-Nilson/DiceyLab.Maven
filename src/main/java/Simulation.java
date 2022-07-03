@@ -8,13 +8,12 @@ public class Simulation {
     Bins results;
 
     //For standard 6-sided dice.
-    public Simulation(Integer numberOfDice,Integer numberOfRolls) {
+    public Simulation(Integer numberOfDice, Integer numberOfRolls) {
         this.numberOfSides = 6;
         this.numberOfDice = numberOfDice;
         this.numberOfRolls = numberOfRolls;
-        Integer noOfPossibleOutcomes = (numberOfDice * numberOfSides) - (numberOfDice -1);
-        Bins results = new Bins(numberOfDice, noOfPossibleOutcomes);
-
+        Integer noOfPossibleOutcomes = (numberOfDice * numberOfSides) - (numberOfDice - 1);
+        results = new Bins(numberOfDice, noOfPossibleOutcomes);
     }
 
     //Just have a good time. Should probably implement a check for number of sides. 3-sided die are abominations,
@@ -23,21 +22,21 @@ public class Simulation {
         this.numberOfSides = numberOfSides;
         this.numberOfDice = numberOfDice;
         this.numberOfRolls  = numberOfRolls;
-        Integer noOfPossibleOutcomes = (numberOfDice * numberOfSides) - (numberOfDice -1);
-        Bins results = new Bins(numberOfDice, noOfPossibleOutcomes);
+        Integer noOfPossibleOutcomes = (numberOfDice * numberOfSides) - (numberOfDice - 1);
+        results = new Bins(numberOfDice, noOfPossibleOutcomes);
     }
 
     public void runSimulation() {
-        Integer noOfPossibleOutcomes = (numberOfDice * numberOfSides) - (numberOfDice -1);
+//        Integer noOfPossibleOutcomes = (numberOfDice * numberOfSides) - (numberOfDice -1);
         Dice dice = new Dice(numberOfSides, numberOfDice);
         for (int i = 0; i < numberOfRolls; i++) {
-            dice.tossAndSum();
-            results.incrementBin(dice.tossAndSum());
+            int numToIncrement = dice.tossAndSum() - numberOfDice;
+            results.incrementBin(numToIncrement);
         }
     }
 
     public void printResults() { //hmmmm this doesn't look quite right.
-        System.out.println(results.toString());
+        results.toString();  //let's use get bin here.
     }
 
 

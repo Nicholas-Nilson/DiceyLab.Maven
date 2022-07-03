@@ -16,8 +16,8 @@ public class Bins {
     }
 
     public void incrementBin(Integer rollToIncrement) {
-        Integer index = rollToIncrement - numberOfDice;
-        results[index]++;
+        Integer index = rollToIncrement;
+        results[index] += 1;
     }
 
 }
