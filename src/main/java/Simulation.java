@@ -46,7 +46,6 @@ public class Simulation {
             Double percentTimesRolled = (rollResult / rollNumbers);
             percentTimesRolled = (double)Math.round(percentTimesRolled * 100)/100;
             percentResults[i] = percentTimesRolled;
-            System.out.println(percentResults[i]);
         }
         return percentResults;
     }
