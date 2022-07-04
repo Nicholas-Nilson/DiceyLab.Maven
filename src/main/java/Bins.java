@@ -15,8 +15,8 @@ public class Bins {
         return results[index];
     }
 
-    public void incrementBin(Integer rollToIncrement) {
-        Integer index = rollToIncrement;
+    public void incrementBin(Integer indexToIncrement) {
+        Integer index = indexToIncrement;
         results[index] += 1;
     }
 
