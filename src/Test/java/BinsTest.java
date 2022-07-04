@@ -55,4 +55,30 @@ class BinsTest {
         Assertions.assertEquals(expected, actual);
     }
 
+    @Test
+    public void testGetBin1(){
+        //Given
+        int[] expectedArray = new int[] {0, 1, 2, 3, 4, 5};
+        int expected = expectedArray[5];
+        //When
+        Bins testBin = new Bins(1, 6);
+        testBin.results[5] = 5;
+        //Then
+        int actual = testBin.getBin(6);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetBin2(){
+        //Given
+        int[] expectedArray = new int[] {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        int expected = expectedArray[6];
+        //When
+        Bins testBin = new Bins(2, 11);
+        testBin.results[6] = 8;
+        //Then
+        int actual = testBin.getBin(8);
+        Assertions.assertEquals(expected, actual);
+    }
+
 }

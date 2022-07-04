@@ -6,7 +6,7 @@ public class Simulation {
     Integer numberOfDice;
     Integer numberOfRolls;
     Integer noOfPossibleOutcomes;
-    Bins results;
+    Bins rolls;
 
     //For standard 6-sided dice.
     public Simulation(Integer numberOfDice, Integer numberOfRolls) {
@@ -14,7 +14,7 @@ public class Simulation {
         this.numberOfDice = numberOfDice;
         this.numberOfRolls = numberOfRolls;
         this.noOfPossibleOutcomes = (numberOfDice * numberOfSides) - (numberOfDice - 1);
-        results = new Bins(numberOfDice, noOfPossibleOutcomes);
+        rolls = new Bins(numberOfDice, noOfPossibleOutcomes);
     }
 
     //Just have a good time. Should probably implement a check for number of sides. 3-sided die are abominations,
@@ -24,24 +24,27 @@ public class Simulation {
         this.numberOfDice = numberOfDice;
         this.numberOfRolls  = numberOfRolls;
         this.noOfPossibleOutcomes = (numberOfDice * numberOfSides) - (numberOfDice - 1);
-        results = new Bins(numberOfDice, noOfPossibleOutcomes);
+//        results = new Bins(numberOfDice, noOfPossibleOutcomes);
     }
 
     public void runSimulation() {
 //        Integer noOfPossibleOutcomes = (numberOfDice * numberOfSides) - (numberOfDice -1);
+        rolls = new Bins(numberOfDice, noOfPossibleOutcomes);
         Dice dice = new Dice(numberOfSides, numberOfDice);
         for (int i = 0; i < numberOfRolls; i++) {
-            int numToIncrement = dice.tossAndSum() - numberOfDice;
-            results.incrementBin(numToIncrement);
+            int indexOfNumToIncrement = dice.tossAndSum() - numberOfDice;
+            rolls.incrementBin(indexOfNumToIncrement);
         }
     }
 
     public Double[] getPercentages() {
-        Double[] percentResults = new Double[results.results.length];
-        for (int i = 0; i <= noOfPossibleOutcomes; i++) {
-            double percentTimesRolled = results.results[i] / numberOfRolls;
-            percentTimesRolled = Math.round(percentTimesRolled * 100)/100;
+        Double[] percentResults = new Double[rolls.results.length];
+        for (int i = 0; i < rolls.results.length; i++) {
+            double percentTimesRolled = rolls.results[i] / numberOfRolls;
+//            System.out.println(percentTimesRolled);
+            percentTimesRolled = (double)Math.round(percentTimesRolled * 100)/100;
             percentResults[i] = percentTimesRolled;
+//            System.out.println(percentResults[i]);
         }
         return percentResults;
     }

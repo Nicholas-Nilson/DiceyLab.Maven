@@ -11,7 +11,7 @@ public class Bins {
     }
 
     public Integer getBin (Integer rollToGetResultsFor) {
-        Integer index = rollToGetResultsFor - numberOfDice;
+        Integer index = rollToGetResultsFor - numberOfDice; //may put this line in Simulation.
         return results[index];
     }
 
