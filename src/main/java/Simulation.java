@@ -7,6 +7,7 @@ public class Simulation {
     Integer numberOfRolls;
     Integer noOfPossibleOutcomes;
     Bins rolls;
+    Double[] percentResults;
 
     //For standard 6-sided dice.
     public Simulation(Integer numberOfDice, Integer numberOfRolls) {
@@ -38,7 +39,7 @@ public class Simulation {
     }
 
     public Double[] getPercentages() {
-        Double[] percentResults = new Double[rolls.results.length];
+        this.percentResults = new Double[rolls.results.length];
         for (int i = 0; i < rolls.results.length; i++) {
             Double rollResult = (double)(rolls.results[i]);
             Double rollNumbers = (double)(numberOfRolls);
@@ -50,11 +51,33 @@ public class Simulation {
         return percentResults;
     }
 
-//    public void printResults() { //holy formatting, Batman!
-//        System.out.println("***");
-//        System.out.printf("Simulation of %d dice tossed for %d.\n", numberOfDice, numberOfRolls);
-//        System.out.println("***");
-//
+    public String getStars(Double percentToPrint) {
+        String row ="";
+        char star = '*';
+        int numberOfStars = (int)(percentToPrint * 100);
+        for (int i =0; i < numberOfStars; i++) {
+            row = row + star;
+        }
+        return row;
+    }
+
+    public void printResults() { //holy formatting, Batman!
+//        int valueOfLargestBin = 0;  //well this was a wonderful way to spend my time... have to figure out how to determine field size of timesRolled.
+//        for (int i = 0; i < rolls.results.length; i++) {  //to use this how I was thinking I'd need another 'getStars' type for loop. but that
+//            if (valueOfLargestBin < rolls.results[i]) {  //needlessly convolutes the code when I can just set the field
+//                valueOfLargestBin = rolls.results[i];   //only issue is if #of times rolled exceeds the set 9 digit field.
+//            }
 //        }
+//        String largestBin = String.valueOf(valueOfLargestBin);
+//        int timesRolledField = largestBin.length();
+
+        getPercentages();
+        System.out.println("***");
+        System.out.printf("Simulation of %d dice tossed for %d times.\n", numberOfDice, numberOfRolls);
+        System.out.println("***\n");
+        for(int i = 0; i < percentResults.length; i++) {
+            System.out.printf("%3d: %9d: %.2f %s\n", numberOfDice+i, rolls.getBin(i+numberOfDice), percentResults[i], getStars(percentResults[i]));
+        }
+        }
 
     }
