@@ -40,11 +40,12 @@ public class Simulation {
     public Double[] getPercentages() {
         Double[] percentResults = new Double[rolls.results.length];
         for (int i = 0; i < rolls.results.length; i++) {
-            double percentTimesRolled = rolls.results[i] / numberOfRolls;
-//            System.out.println(percentTimesRolled);
+            Double rollResult = (double)(rolls.results[i]);
+            Double rollNumbers = (double)(numberOfRolls);
+            Double percentTimesRolled = (rollResult / rollNumbers);
             percentTimesRolled = (double)Math.round(percentTimesRolled * 100)/100;
             percentResults[i] = percentTimesRolled;
-//            System.out.println(percentResults[i]);
+            System.out.println(percentResults[i]);
         }
         return percentResults;
     }
