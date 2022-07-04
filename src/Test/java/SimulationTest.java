@@ -54,23 +54,23 @@ class SimulationTest {
     @Test
     public void testPrintResults() {
         //Given
-        String expected = " ***\n"+
+        String expected =   "***\n"+
                             "Simulation of 2 dice tossed for 1000000 times.\n"+
                             "***\n\n"+
 
-        "2:     27848: 0.03 ***\n"+
-        "3:     55286: 0.06 ******\n"+
-        "4:     83432: 0.08 ********\n"+
-        "5:    110740: 0.11 ***********\n"+
-        "6:    138915: 0.14 **************\n"+
-        "7:    166833: 0.17 *****************\n"+
-        "8:    139399: 0.14 **************\n"+
-        "9:    110417: 0.11 ***********\n"+
-        "10:     82971: 0.08 ********\n"+
-        "11:     56104: 0.06 ******\n"+
-        "12:     28055: 0.03 ***\n";
+                            "  2:     27848: 0.03 ***\n"+
+                            "  3:     55286: 0.06 ******\n"+
+                            "  4:     83432: 0.08 ********\n"+
+                            "  5:    110740: 0.11 ***********\n"+
+                            "  6:    138915: 0.14 **************\n"+
+                            "  7:    166833: 0.17 *****************\n"+
+                            "  8:    139399: 0.14 **************\n"+
+                            "  9:    110417: 0.11 ***********\n"+
+                            " 10:     82971: 0.08 ********\n"+
+                            " 11:     56104: 0.06 ******\n"+
+                            " 12:     28055: 0.03 ***\n";
         //When
-        Simulation testSim = new Simulation(2, 100000);
+        Simulation testSim = new Simulation(2, 1000000);
         testSim.rolls.results[0] = 27848;
         testSim.rolls.results[1] = 55286;
         testSim.rolls.results[2] = 83432;
@@ -82,10 +82,9 @@ class SimulationTest {
         testSim.rolls.results[8] = 82971;
         testSim.rolls.results[9] = 56104;
         testSim.rolls.results[10] = 28055;
-        testSim.printResults();
         //Then
-        String actual = testSim.printResults().toString();
-        Assertions.assertArrayEquals(expected, actual);
+        String actual = testSim.printResults();
+        Assertions.assertEquals(expected, actual);
     }
 
 
